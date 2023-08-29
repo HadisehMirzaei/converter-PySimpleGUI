@@ -1,5 +1,5 @@
 "Converter with PySimpleGUI"
-"this code have not any licence"
+
 import PySimpleGUI as sg
 
 layout = [[sg.Input(key="-INPUT-", size=(40, 40)),
@@ -13,6 +13,23 @@ while True:
     event, values = window.read()
     if event == sg.WIN_CLOSED:
         break
-    
+    if event == "-CONVERT-":
+        input_number = values["-INPUT-"]
+        if input_number.isnumeric():
+            if values["-SPIN-"] == "kilometer to meter":
+                output = float(input_number) * 1000
+                output_str = f"{input_number} km is {output}m"
+                window["-OUTPUT-"].update(output_str)
+            if values["-SPIN-"] == "meter to decimeter":
+                output = float(input_number) * 10
+                output_str = f"{input_number} m is {output}dm"
+                window["-OUTPUT-"].update(output_str)
+            if values["-SPIN-"] == "dosimeter to centimeter":
+                output = float(input_number) * 10
+                output_str = f"{input_number} dm is {output}cm"
+                window["-OUTPUT-"].update(output_str)
+        else:
+            window["-OUTPUT-"].update("please enter a number!!!!!!!!!!!!!!!!         not a text!")
+
 window.close()
 
