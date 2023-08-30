@@ -5,7 +5,7 @@ import PySimpleGUI as sg
 layout = [[sg.Input(key="-INPUT-", size=(40, 40)),
           sg.Spin(["kilometer to meter", "meter to decimeter", "dosimeter to centimeter"], background_color="black", text_color="white", key="-SPIN-"),
            sg.Button("convert", key="-CONVERT-", button_color="black")],
-          [sg.Text("output", key="-OUTPUT-", background_color = "white", text_color="black")]]
+          [sg.Text("output", key="-OUTPUT-", background_color="white", text_color="black")]]
 
 window = sg.Window("converter", layout, background_color="white", size=(500, 100))
 
@@ -17,17 +17,15 @@ while True:
         input_number = values["-INPUT-"]
         if input_number.isnumeric():
             if values["-SPIN-"] == "kilometer to meter":
-                output = float(input_number) * 1000
+                output = round(float(input_number) * 1000, 2)
                 output_str = f"{input_number} km is {output}m"
-                window["-OUTPUT-"].update(output_str)
             if values["-SPIN-"] == "meter to decimeter":
-                output = float(input_number) * 10
+                output = round(float(input_number) * 10, 2)
                 output_str = f"{input_number} m is {output}dm"
-                window["-OUTPUT-"].update(output_str)
             if values["-SPIN-"] == "dosimeter to centimeter":
-                output = float(input_number) * 10
+                output = round(float(input_number) * 10, 2)
                 output_str = f"{input_number} dm is {output}cm"
-                window["-OUTPUT-"].update(output_str)
+            window["-OUTPUT-"].update(output_str)
         else:
             window["-OUTPUT-"].update("please enter a number!!!!!!!!!!!!!!!!         not a text!")
 
